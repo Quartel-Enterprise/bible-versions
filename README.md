@@ -43,6 +43,7 @@ Each chapter is stored in a JSON file with the following structure:
 We have a suite of integrity tests to ensure the data is complete and accurate. These tests verify:
 - All 66 books of the Bible are present.
 - Each book contains the correct number of chapters.
+- Each chapter contains the correct number of verses.
 - Data consistency across different versions.
 - JSON structure validity.
 

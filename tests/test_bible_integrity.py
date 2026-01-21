@@ -1,6 +1,10 @@
 import os
 import json
 import unittest
+try:
+    from tests.bible_metadata import STANDARD_VERSE_COUNTS
+except ImportError:
+    from bible_metadata import STANDARD_VERSE_COUNTS
 
 # Expected chapter counts for a standard Protestant Bible (66 books)
 EXPECTED_CHAPTERS = {
@@ -154,6 +158,44 @@ class TestBibleIntegrity(unittest.TestCase):
                                 self.assertIn("verses", data)
                                 self.assertIsInstance(data["verses"], list)
                                 self.assertGreater(len(data["verses"]), 0)
+
+    def test_all_chapters_verse_counts(self):
+        """Verifies for every chapter if the verses amount is correct, according to standard baseline."""
+        versions = get_versions()
+        for version in versions:
+            version_path = os.path.join(BIBLE_ROOT, version)
+            errors = []
+            
+            for book, expected_list in STANDARD_VERSE_COUNTS.items():
+                book_path = os.path.join(version_path, book)
+                book_name = BOOK_NAMES.get(book, book)
+                
+                if not os.path.exists(book_path):
+                    continue
+                
+                for i, expected_verses in enumerate(expected_list):
+                    chapter = i + 1
+                    file_path = os.path.join(book_path, f"{chapter}.json")
+                    
+                    if not os.path.exists(file_path):
+                        # Missing chapters are handled in test_all_versions_structure
+                        continue
+                        
+                    try:
+                        with open(file_path, "r", encoding="utf-8") as f:
+                            data = json.load(f)
+                            actual_verses = len(data.get("verses", []))
+                            if actual_verses != expected_verses:
+                                errors.append(f"{book} ({book_name}) {chapter}: expected {expected_verses}, found {actual_verses}")
+                    except Exception as e:
+                        errors.append(f"{book} ({book_name}) {chapter}: error reading file - {str(e)}")
+            
+            if errors:
+                # Limit output to first 50 errors for readability
+                msg = f"Version {version} has {len(errors)} verse count deviations:\n" + "\n".join(errors[:50])
+                if len(errors) > 50:
+                    msg += f"\n... and {len(errors) - 50} more."
+                self.fail(msg)
 
 if __name__ == "__main__":
     unittest.main()
