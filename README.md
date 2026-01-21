@@ -37,3 +37,17 @@ Each chapter is stored in a JSON file with the following structure:
 ## Documentation
 
 - [Legends and Abbreviations](docs/legends.md)
+
+## Quality Assurance
+
+We have a suite of integrity tests to ensure the data is complete and accurate. These tests verify:
+- All 66 books of the Bible are present.
+- Each book contains the correct number of chapters.
+- Data consistency across different versions.
+- JSON structure validity.
+
+To run the tests, use the following command:
+
+```bash
+python3 tests/test_bible_integrity.py
+```

@@ -56,6 +56,7 @@ This document provides a reference for the Bible versions included in this proje
 | Hc           | Habakkuk        |
 | Is           | Isaiah          |
 | Jd           | Jude            |
+| Jh           | John            |
 | Jl           | Joel            |
 | Jn           | Jonah           |
 | Jo           | Job             |
