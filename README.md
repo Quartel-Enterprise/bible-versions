@@ -2,6 +2,8 @@
 
 A collection of Bible versions in JSON format, organized by version, book, and chapter.
 
+This data is used in production for [Bible Planner](https://www.bibleplanner.app/).
+
 ## Supported Versions and Books
 
 This repository contains various translations of the Bible. For a complete list of supported versions, their descriptions, and the abbreviations used for each book, please refer to the [Legends Documentation](docs/legends.md).
