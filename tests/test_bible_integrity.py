@@ -73,8 +73,7 @@ class TestBibleIntegrity(unittest.TestCase):
                     missing = [b for b in EXPECTED_CHAPTERS if b not in existing_books]
                     if missing:
                         missing_with_names = [f"{b} ({BOOK_NAMES.get(b, 'Unknown')})" for b in missing]
-                        # We don't assert 66 here yet to allow checking other books
-                        print(f"[{version}] Missing books: {missing_with_names}")
+                        self.fail(f"[{version}] Missing books: {missing_with_names}")
 
                 # Check chapter counts
                 for book, expected_count in EXPECTED_CHAPTERS.items():
