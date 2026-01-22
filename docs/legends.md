@@ -2,10 +2,6 @@
 
 This document provides a reference for the Bible versions included in this project and the abbreviations used for each book.
 
-> ⚠️
-> The Gospel of John is currently missing from the available versions. This is a temporary situation, and it will be added soon.
-
-
 ## Versions
 
 | Version             | Description            | Language   | Country       |
@@ -19,7 +15,7 @@ This document provides a reference for the Bible versions included in this proje
 |:-------------|:----------------|
 | 1Co          | 1 Corinthians   |
 | 1Cr          | 1 Chronicles    |
-| 1Jo          | 1 John          |
+| 1Jh          | 1 John          |
 | 1Pe          | 1 Peter         |
 | 1Rs          | 1 Kings         |
 | 1Sm          | 1 Samuel        |
@@ -27,13 +23,13 @@ This document provides a reference for the Bible versions included in this proje
 | 1Ts          | 1 Thessalonians |
 | 2Co          | 2 Corinthians   |
 | 2Cr          | 2 Chronicles    |
-| 2Jo          | 2 John          |
+| 2Jh          | 2 John          |
 | 2Pe          | 2 Peter         |
 | 2Rs          | 2 Kings         |
 | 2Sm          | 2 Samuel        |
 | 2Tm          | 2 Timothy       |
 | 2Ts          | 2 Thessalonians |
-| 3Jo          | 3 John          |
+| 3Jh          | 3 John          |
 | Ag           | Haggai          |
 | Am           | Amos            |
 | Ap           | Revelation      |

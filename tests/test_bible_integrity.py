@@ -15,8 +15,8 @@ EXPECTED_CHAPTERS = {
     "Ob": 1, "Jn": 4, "Mq": 7, "Na": 3, "Hc": 3, "Sf": 3, "Ag": 2, "Zc": 14, "Ml": 4,
     "Mt": 28, "Mc": 16, "Lc": 24, "Jh": 21, "At": 28, "Rm": 16, "1Co": 16, "2Co": 13,
     "Gl": 6, "Ef": 6, "Fp": 4, "Cl": 4, "1Ts": 5, "2Ts": 3, "1Tm": 6, "2Tm": 4,
-    "Tt": 3, "Fm": 1, "Hb": 13, "Tg": 5, "1Pe": 5, "2Pe": 3, "1Jo": 5, "2Jo": 1,
-    "3Jo": 1, "Jd": 1, "Ap": 22
+    "Tt": 3, "Fm": 1, "Hb": 13, "Tg": 5, "1Pe": 5, "2Pe": 3, "1Jh": 5, "2Jh": 1,
+    "3Jh": 1, "Jd": 1, "Ap": 22
 }
 
 BOOK_NAMES = {
@@ -35,7 +35,7 @@ BOOK_NAMES = {
     "Ef": "Ephesians", "Fp": "Philippians", "Cl": "Colossians", "1Ts": "1 Thessalonians",
     "2Ts": "2 Thessalonians", "1Tm": "1 Timothy", "2Tm": "2 Timothy", "Tt": "Titus",
     "Fm": "Philemon", "Hb": "Hebrews", "Tg": "James", "1Pe": "1 Peter",
-    "2Pe": "2 Peter", "1Jo": "1 John", "2Jo": "2 John", "3Jo": "3 John",
+    "2Pe": "2 Peter", "1Jh": "1 John", "2Jh": "2 John", "3Jh": "3 John",
     "Jd": "Jude", "Ap": "Revelation"
 }
 
@@ -73,8 +73,7 @@ class TestBibleIntegrity(unittest.TestCase):
                     missing = [b for b in EXPECTED_CHAPTERS if b not in existing_books]
                     if missing:
                         missing_with_names = [f"{b} ({BOOK_NAMES.get(b, 'Unknown')})" for b in missing]
-                        # We don't assert 66 here yet to allow checking other books
-                        print(f"[{version}] Missing books: {missing_with_names}")
+                        self.fail(f"[{version}] Missing books: {missing_with_names}")
 
                 # Check chapter counts
                 for book, expected_count in EXPECTED_CHAPTERS.items():
