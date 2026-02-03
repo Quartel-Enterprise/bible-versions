@@ -41,6 +41,7 @@ Each version directory contains a `metadata.json` file with general information:
 
 ```json
 {
+  "name": "Almeida Corrigida Fiel",
   "id": "ACF",
   "language": "pt",
   "country": "br",
