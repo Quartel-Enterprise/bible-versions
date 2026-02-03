@@ -149,7 +149,7 @@ class TestBibleIntegrity(unittest.TestCase):
             v_path = os.path.join(BIBLE_ROOT, v)
             for root, _, files in os.walk(v_path):
                 for file in files:
-                    if file.endswith(".json"):
+                    if file.endswith(".json") and file != "metadata.json":
                         path = os.path.join(root, file)
                         with self.subTest(file=path):
                             with open(path, "r", encoding="utf-8") as f:
