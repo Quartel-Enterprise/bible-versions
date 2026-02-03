@@ -14,6 +14,7 @@ This repository contains various translations of the Bible. For a complete list 
   - `[Version]/`: Directory for a specific Bible version (e.g., `ACF`, `WEB`).
     - `[Book]/`: Directory for a specific book (using abbreviations).
       - `[Chapter].json`: JSON file containing the verses for that chapter.
+    - `metadata.json`: JSON file containing metadata about the version.
 
 ## Data Format
 
@@ -34,6 +35,22 @@ Each chapter is stored in a JSON file with the following structure:
 }
 ```
 
+### Version Metadata
+
+Each version directory contains a `metadata.json` file with general information:
+
+```json
+{
+  "id": "ACF",
+  "language": "pt",
+  "country": "br",
+  "year": {
+    "begin": 1994,
+    "end": 2011
+  }
+}
+```
+
 ## Documentation
 
 - [Legends and Abbreviations](docs/legends.md)
@@ -46,9 +63,22 @@ We have a suite of integrity tests to ensure the data is complete and accurate. 
 - Each chapter contains the correct number of verses.
 - Data consistency across different versions.
 - JSON structure validity.
+- Presence and validity of version metadata.
 
-To run the tests, use the following command:
+### Running Tests
+
+We use a suite of integrity tests to ensure the data is complete and accurate. You can run all tests using the following command:
 
 ```bash
+python3 -m unittest discover tests
+```
+
+Or run specific test files:
+
+```bash
+# Bible data integrity (structure, chapters, verses)
 python3 tests/test_bible_integrity.py
+
+# Version metadata validation
+python3 tests/test_metadata_integrity.py
 ```
