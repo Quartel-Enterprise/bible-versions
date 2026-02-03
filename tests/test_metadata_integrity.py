@@ -11,12 +11,14 @@ def get_versions():
 
 EXPECTED_METADATA = {
     "ACF": {
+        "name": "Almeida Corrigida Fiel",
         "id": "ACF",
         "language": "pt",
         "country": "br",
         "year": {"begin": 1994, "end": 2011}
     },
     "WEB": {
+        "name": "World English Bible",
         "id": "WEB",
         "language": "en",
         "country": "-",
@@ -49,6 +51,7 @@ class TestMetadataIntegrity(unittest.TestCase):
                         self.fail(f"Invalid JSON in {metadata_path}")
 
                     # Check required fields
+                    self.assertIn("name", data, f"Missing 'name' in {metadata_path}")
                     self.assertEqual(data.get("id"), version, f"Metadata ID mismatch in {version}")
                     self.assertIn("language", data, f"Missing 'language' in {metadata_path}")
                     self.assertIn("country", data, f"Missing 'country' in {metadata_path}")
