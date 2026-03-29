@@ -4,10 +4,10 @@ This document provides a reference for the Bible versions included in this proje
 
 ## Versions
 
-| Version             | Description            | Language   | Country       |
-|:--------------------|:-----------------------|:-----------|:--------------|
-| [ACF](../bible/ACF) | Almeida Corrigida Fiel | Portuguese | Brazil        |
-| [WEB](../bible/WEB) | World English Bible    | English    | International |
+| Version             | Description            | Language   | Country       | Chapters |
+|:--------------------|:-----------------------|:-----------|:--------------|---------:|
+| [ACF](../bible/ACF) | Almeida Corrigida Fiel | Portuguese | Brazil        |     1189 |
+| [WEB](../bible/WEB) | World English Bible    | English    | International |     1189 |
 
 ## Book Abbreviations
 

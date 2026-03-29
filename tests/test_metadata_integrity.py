@@ -15,6 +15,7 @@ EXPECTED_METADATA = {
         "id": "ACF",
         "language": "pt",
         "country": "br",
+        "chapters": 1189,
         "year": {"begin": 1994, "end": 2011}
     },
     "WEB": {
@@ -22,6 +23,7 @@ EXPECTED_METADATA = {
         "id": "WEB",
         "language": "en",
         "country": "-",
+        "chapters": 1189,
         "year": {"begin": 1997, "end": 2020}
     }
 }
@@ -55,6 +57,9 @@ class TestMetadataIntegrity(unittest.TestCase):
                     self.assertEqual(data.get("id"), version, f"Metadata ID mismatch in {version}")
                     self.assertIn("language", data, f"Missing 'language' in {metadata_path}")
                     self.assertIn("country", data, f"Missing 'country' in {metadata_path}")
+                    self.assertIn("chapters", data, f"Missing 'chapters' in {metadata_path}")
+                    self.assertIsInstance(data["chapters"], int, f"'chapters' must be an integer in {metadata_path}")
+                    self.assertGreater(data["chapters"], 0, f"'chapters' must be positive in {metadata_path}")
                     self.assertIn("year", data, f"Missing 'year' in {metadata_path}")
                     
                     year = data.get("year", {})
