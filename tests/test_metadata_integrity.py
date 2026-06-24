@@ -1,8 +1,11 @@
 import os
+import re
 import json
 import unittest
 
 BIBLE_ROOT = os.path.join(os.getcwd(), "bible")
+
+SEMVER_PATTERN = re.compile(r"^\d+\.\d+\.\d+$")
 
 def get_versions():
     if not os.path.exists(BIBLE_ROOT):
@@ -13,6 +16,7 @@ EXPECTED_METADATA = {
     "ACF": {
         "name": "Almeida Corrigida Fiel",
         "id": "ACF",
+        "version": "1.0.0",
         "language": "pt",
         "country": "br",
         "year": {"begin": 1994, "end": 2011}
@@ -20,6 +24,7 @@ EXPECTED_METADATA = {
     "WEB": {
         "name": "World English Bible",
         "id": "WEB",
+        "version": "1.0.0",
         "language": "en",
         "country": "-",
         "year": {"begin": 1997, "end": 2020}
@@ -53,6 +58,13 @@ class TestMetadataIntegrity(unittest.TestCase):
                     # Check required fields
                     self.assertIn("name", data, f"Missing 'name' in {metadata_path}")
                     self.assertEqual(data.get("id"), version, f"Metadata ID mismatch in {version}")
+                    self.assertIn("version", data, f"Missing 'version' in {metadata_path}")
+                    self.assertIsInstance(data["version"], str, f"'version' must be a string in {metadata_path}")
+                    self.assertRegex(
+                        data["version"],
+                        SEMVER_PATTERN,
+                        f"'version' must follow SemVer (major.minor.patch) in {metadata_path}",
+                    )
                     self.assertIn("language", data, f"Missing 'language' in {metadata_path}")
                     self.assertIn("country", data, f"Missing 'country' in {metadata_path}")
                     self.assertIn("year", data, f"Missing 'year' in {metadata_path}")
