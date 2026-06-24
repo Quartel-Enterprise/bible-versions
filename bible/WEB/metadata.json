@@ -1,6 +1,7 @@
 {
   "id": "WEB",
   "name": "World English Bible",
+  "version": "1.0.0",
   "language": "en",
   "country": "-",
   "year": {

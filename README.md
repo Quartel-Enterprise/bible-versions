@@ -18,42 +18,14 @@ This repository contains various translations of the Bible. For a complete list 
 
 ## Data Format
 
-Each chapter is stored in a JSON file with the following structure:
-
-```json
-{
-  "version": "WEB",
-  "book": "Gn",
-  "chapter": 1,
-  "verses": [
-    {
-      "number": 1,
-      "text": "In the beginning, God created the heavens and the earth."
-    },
-    ...
-  ]
-}
-```
-
-### Version Metadata
-
-Each version directory contains a `metadata.json` file with general information:
-
-```json
-{
-  "name": "Almeida Corrigida Fiel",
-  "id": "ACF",
-  "language": "pt",
-  "country": "br",
-  "year": {
-    "begin": 1994,
-    "end": 2011
-  }
-}
-```
+Each chapter is stored as a JSON file and each version carries a `metadata.json`
+describing it, including a Semantic Version for the data. For the full
+specification of the chapter and metadata structures and the versioning rules,
+see the [Data Format Documentation](docs/data_format.md).
 
 ## Documentation
 
+- [Data Format](docs/data_format.md)
 - [Legends and Abbreviations](docs/legends.md)
 
 ## Quality Assurance
