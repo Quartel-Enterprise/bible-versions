@@ -2,6 +2,10 @@ import os
 import re
 import json
 import unittest
+try:
+    from tests.chapter_counter import count_chapters
+except ImportError:
+    from chapter_counter import count_chapters
 
 BIBLE_ROOT = os.path.join(os.getcwd(), "bible")
 
@@ -16,17 +20,19 @@ EXPECTED_METADATA = {
     "ACF": {
         "name": "Almeida Corrigida Fiel",
         "id": "ACF",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "language": "pt",
         "country": "br",
+        "chapters": 1189,
         "year": {"begin": 1994, "end": 2011}
     },
     "WEB": {
         "name": "World English Bible",
         "id": "WEB",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "language": "en",
         "country": "-",
+        "chapters": 1189,
         "year": {"begin": 1997, "end": 2020}
     }
 }
@@ -67,6 +73,8 @@ class TestMetadataIntegrity(unittest.TestCase):
                     )
                     self.assertIn("language", data, f"Missing 'language' in {metadata_path}")
                     self.assertIn("country", data, f"Missing 'country' in {metadata_path}")
+                    self.assertIn("chapters", data, f"Missing 'chapters' in {metadata_path}")
+                    self.assertIsInstance(data["chapters"], int, f"'chapters' must be an integer in {metadata_path}")
                     self.assertIn("year", data, f"Missing 'year' in {metadata_path}")
                     
                     year = data.get("year", {})
@@ -87,6 +95,25 @@ class TestMetadataIntegrity(unittest.TestCase):
                 with open(metadata_path, "r", encoding="utf-8") as f:
                     actual = json.load(f)
                     self.assertEqual(actual, expected, f"Metadata content mismatch for {version}")
+
+    def test_chapters_matches_actual_count(self):
+        """Verifies that 'chapters' equals the real number of chapter files on disk."""
+        versions = get_versions()
+        for version in versions:
+            metadata_path = os.path.join(BIBLE_ROOT, version, "metadata.json")
+            if not os.path.exists(metadata_path):
+                continue
+
+            with self.subTest(version=version):
+                with open(metadata_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                actual_chapters = count_chapters(os.path.join(BIBLE_ROOT, version))
+                self.assertEqual(
+                    data.get("chapters"),
+                    actual_chapters,
+                    f"'chapters' in {metadata_path} ({data.get('chapters')}) "
+                    f"does not match the {actual_chapters} chapter files on disk",
+                )
 
 if __name__ == "__main__":
     unittest.main()

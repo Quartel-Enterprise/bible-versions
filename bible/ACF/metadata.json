@@ -1,9 +1,10 @@
 {
   "id": "ACF",
   "name": "Almeida Corrigida Fiel",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "language": "pt",
   "country": "br",
+  "chapters": 1189,
   "year": {
     "begin": 1994,
     "end": 2011

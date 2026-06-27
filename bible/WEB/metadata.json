@@ -1,9 +1,10 @@
 {
   "id": "WEB",
   "name": "World English Bible",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "language": "en",
   "country": "-",
+  "chapters": 1189,
   "year": {
     "begin": 1997,
     "end": 2020
