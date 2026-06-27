@@ -57,9 +57,10 @@ about the version:
 {
   "id": "ACF",
   "name": "Almeida Corrigida Fiel",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "language": "pt",
   "country": "br",
+  "chapters": 1189,
   "year": {
     "begin": 1994,
     "end": 2011
@@ -74,6 +75,7 @@ about the version:
 | `version`  | string | The data version of this translation (see [Versioning](#versioning)). |
 | `language` | string | ISO 639-1 language code (e.g. `pt`, `en`).                         |
 | `country`  | string | ISO 3166-1 alpha-2 country code, or `-` when not country-specific. |
+| `chapters` | number | The total number of chapters across all books in this version.    |
 | `year`     | object | The publication range of the underlying translation.              |
 
 The `year` object has:
